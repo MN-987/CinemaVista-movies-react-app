@@ -20,7 +20,7 @@ const NavBar = () => {
   return (
     <>
       <nav className={`mask ${isNavHidden ? 'is-hidden' : ''}`}>
-        <a href="#">Welcome To Mmovies</a>
+        <a href="/">Welcome To Mmovies</a>
         <ul className="list">
           <li><a href="#">About</a></li>
           <li><a href="#">Projects</a></li>

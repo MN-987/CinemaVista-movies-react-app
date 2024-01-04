@@ -11,10 +11,12 @@ body {
   width: 33%;
   height: 33%;
 }
-
+.cellphone-container:hover{
+  cursor:pointer;
+}
 .cellphone-container {
   width: 375px;
-  height: 650px;
+  height: 850px;
   background-color: #1e1b26;
   margin: 60px auto 0 auto;
   box-shadow: 5px 5px 115px -14px black;
