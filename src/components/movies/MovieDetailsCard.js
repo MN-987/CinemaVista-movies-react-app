@@ -16,14 +16,14 @@ return(
         >
           <div className="movie-card__overlay"></div>
           <div className="movie-card__share">
-            <button className="movie-card__icon">
-              <i className="material-icons">&#FavoriteIcon</i>
+          <button className="movie-card__icon">
+              <i className="material-icons">save</i>
             </button>
             <button className="movie-card__icon">
-              <i className="material-icons">&#xe253</i>
+              <i className="material-icons">&#xe253;</i>
             </button>
             <button className="movie-card__icon">
-              <i className="material-icons">&#xe80d</i>
+              <i className="material-icons">&#xe80d;</i>
             </button>
           </div>
           <div className="movie-card__content">

@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "material-icons/iconfont/material-icons.css";
 import "./MoviesCard.css";
 
+
+
 // import { getMovieDetails } from "../../apis/getMovieDetail.js";
 
 

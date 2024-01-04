@@ -46,7 +46,7 @@ button:focus {
   width: 100%;
   max-width: 3000px;
   height: 1000px;
-  min-height: 1000px;
+  min-height: 300px;
   display: block;
   margin: 8vh auto;
   border-radius: 8px;
