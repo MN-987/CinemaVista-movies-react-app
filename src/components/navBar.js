@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './navBar.css';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+  const watchListArrLength=useSelector(state=>state.watchList.watchListArr.length)
   const [isNavHidden, setIsNavHidden] = useState(false);
 const [search,setSearch]=useState('');
 
@@ -37,7 +39,7 @@ const handleSearchClick=()=>{
       <Link to="/">Welcome To Mmovies</Link>
         <ul className="list">
         <li><Link to="#">About</Link></li>
-          <li><Link to="/watch-list">Watch List</Link></li>
+          <li><Link to="/watch-list">Watch List <h6 style={{display:'inline' , color:'red', marginLeft:'5px'}}> {watchListArrLength}</h6></Link></li>
           <li><Link to="#">News</Link></li>
           <li><Link to="#">Contact</Link></li>
         </ul>
