@@ -1,9 +1,24 @@
 import React from "react";
+import { getMovieDetails } from "../../apis/getMovieDetail";
 
+import { useDispatch, useSelector } from "react-redux";
+import {
+  removeFromWatchList,
+} from '../../store/slices/watchList.js'
 const MoviesDetailsCard=(props)=>{
-    
+  const dispatch = useDispatch();
     const baseImageURL = `https://image.tmdb.org/t/p/w500`;
-
+    const handleOnClick=async (e)=>{
+      try {
+        const movieData = await getMovieDetails(props.movie.id);
+        const movieObj = movieData.data;
+        console.log('from movie details card here is movie object that is passed : ',movieObj)
+        dispatch(removeFromWatchList(movieObj));
+      }
+      catch (error) {
+        console.log(error);
+      }
+    }
 return(
 <>
 <div id="movie-card-list">
@@ -17,7 +32,15 @@ return(
           <div className="movie-card__overlay"></div>
           <div className="movie-card__share">
           <button className="movie-card__icon">
-              <i className="material-icons">save</i>
+          <i
+                  className="material-icons "
+                  style={{
+                    color:   "red"
+                  }}
+                  onClick={handleOnClick}
+                >
+                  &#xe87d;
+                </i>
             </button>
             <button className="movie-card__icon">
               <i className="material-icons">&#xe253;</i>
