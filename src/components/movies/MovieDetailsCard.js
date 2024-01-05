@@ -12,7 +12,6 @@ const MoviesDetailsCard=(props)=>{
       try {
         const movieData = await getMovieDetails(props.movie.id);
         const movieObj = movieData.data;
-        console.log('from movie details card here is movie object that is passed : ',movieObj)
         dispatch(removeFromWatchList(movieObj));
       }
       catch (error) {
