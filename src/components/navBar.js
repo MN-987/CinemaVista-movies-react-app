@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './navBar.css';
-
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   const [isNavHidden, setIsNavHidden] = useState(false);
 const [search,setSearch]=useState('');
+
 
 
 
@@ -13,8 +14,7 @@ const handleInputChange=(e)=>{
 }
 
 const handleSearchClick=()=>{
-    console.log('from nav bar', search)
-    window.location.replace(`http://localhost:3000/movies-search/${search}`);
+  window.location.replace(`http://localhost:3000/movies-search/${search}`);
 }
 
 
@@ -34,13 +34,14 @@ const handleSearchClick=()=>{
   return (
     <>
       <nav className={`mask ${isNavHidden ? 'is-hidden' : ''}`}>
-        <a href="/">Welcome To Mmovies</a>
+      <Link to="/">Welcome To Mmovies</Link>
         <ul className="list">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Contact</a></li>
+        <li><Link to="#">About</Link></li>
+          <li><Link to="#">Projects</Link></li>
+          <li><Link to="#">News</Link></li>
+          <li><Link to="#">Contact</Link></li>
         </ul>
+        
         <button className="search" onClick={handleSearchClick}>Search</button>
         <button className="menu">Menu</button>
    <input type='text' onChange={handleInputChange} />  

@@ -7,11 +7,20 @@ body {
   background-repeat: repeat;
 }
 
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0, 
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
 .container {
   width: 33%;
   height: 33%;
 }
-.cellphone-container:hover{
+.movie-img-container:hover{
   cursor:pointer;
 }
 .cellphone-container {
@@ -67,17 +76,21 @@ body {
   display: block;
   border-radius: 4px;
 }
-
+.red-heart {
+  color: red;
+}
 .text-movie-cont {
   padding: 0px 12px;
   text-align: justify;
 }
-
+.action-btn:hover{
+  cursor: pointer;
+}
 .action-btn {
   text-align: right;
 }
 .action-btn i {
-  color: #fe4141;
+  
   font-size: 28px;
   text-align: right;
 }

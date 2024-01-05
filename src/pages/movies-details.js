@@ -7,7 +7,6 @@ import { getMovieDetails } from "../apis/getMovieDetail";
 export default function MoviesDetails() {
   const [movie, setMovie] = useState([]);
   const { id } = useParams();
- 
 
   useEffect(() => {
     getMovieDetails(id)
