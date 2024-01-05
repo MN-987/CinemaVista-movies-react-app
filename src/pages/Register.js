@@ -68,10 +68,8 @@ const Register = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    // Check if there are any errors before submitting
     if (Object.values(formErrors).every((error) => error === null)) {
       console.log('Form submitted:', registerForm);
-      // Add your form submission logic here
     } else {
       console.log('Form has errors. Please fix them before submitting.');
     }
