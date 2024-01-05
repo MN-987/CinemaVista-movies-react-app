@@ -3,16 +3,48 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "material-icons/iconfont/material-icons.css";
 import "./MoviesCard.css";
 import { Link } from "react-router-dom";
-import {  useState} from "react";
+import {  useState } from "react";
+import { useDispatch , useSelector} from 'react-redux'
+ import { addToWatchList , removeFromWatchList}  from '../../store/slices/watchList'
+import { getMovieDetails } from "../../apis/getMovieDetail";
+// import { current } from "@reduxjs/toolkit";
+
 const MoviesCard = (props) => {
+
+
+  const dispatch = useDispatch();
+  const watchListArr = useSelector(state => state.watchList.watchListArr);
+
+
   const baseImageURL = `https://image.tmdb.org/t/p/w500`;
   let modifiedTitle = String(`${props.movieList.title}`).trim();
   const [isActive, setIsActive] = useState(false);
   
-  
-  const handleOnClick=()=>{
-    setIsActive(current => !current);
-  }
+  const handleOnClick = async () => {
+    try {
+      const movieData = await getMovieDetails(props.movieList.id);
+       const movieObj = movieData.data;
+      if (isActive) {
+        // Object is not red, and you need to remove the movie from the watching list
+        
+        dispatch(removeFromWatchList(movieObj))
+        console.log(`Heart now is not red`);
+      } else {
+        // Object is red, and you need to add the movie to the watching list 
+        
+        dispatch(addToWatchList(movieObj));
+        console.log("Updated watchListArr:", [...watchListArr, movieObj]);
+      }
+
+      // Toggle the isActive state
+      setIsActive(current => !current);
+
+      // Log the movie ID
+      console.log(props.movieList.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return (

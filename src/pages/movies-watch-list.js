@@ -1,5 +1,5 @@
 import React from "react"
-import MoviesCard from "../components/movies/moviesCard"
+
 
 const MoviesWatchList=()=>{
     return<>

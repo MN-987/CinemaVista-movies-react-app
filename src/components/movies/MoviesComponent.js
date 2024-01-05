@@ -3,6 +3,7 @@ import React from 'react';
 import MoviesCard from './moviesCard.js'
 import {getMoviesList} from '../../apis/getMoviesList.js'
 import { useState , useEffect } from 'react';
+
 const MoviesComponent = () => {
 
   const [movies, setMovies] = useState([]);
