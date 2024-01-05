@@ -38,9 +38,9 @@ const handleSearchClick=()=>{
       <nav className={`mask ${isNavHidden ? 'is-hidden' : ''}`}>
       <Link to="/">Welcome To Mmovies</Link>
         <ul className="list">
-        <li><Link to="#">About</Link></li>
+        <li><Link to="/">Home</Link></li>
           <li><Link to="/watch-list">Watch List <h6 style={{display:'inline' , color:'red', marginLeft:'5px'}}> {watchListArrLength}</h6></Link></li>
-          <li><Link to="#">News</Link></li>
+          <li><Link to="/register">Register</Link></li>
           <li><Link to="#">Contact</Link></li>
         </ul>
         
