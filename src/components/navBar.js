@@ -37,7 +37,7 @@ const handleSearchClick=()=>{
       <Link to="/">Welcome To Mmovies</Link>
         <ul className="list">
         <li><Link to="#">About</Link></li>
-          <li><Link to="#">Projects</Link></li>
+          <li><Link to="/watch-list">Watch List</Link></li>
           <li><Link to="#">News</Link></li>
           <li><Link to="#">Contact</Link></li>
         </ul>

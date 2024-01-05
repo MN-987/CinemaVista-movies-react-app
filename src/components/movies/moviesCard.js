@@ -1,43 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "material-icons/iconfont/material-icons.css";
 import "./MoviesCard.css";
 import { Link } from "react-router-dom";
-import {  useState } from "react";
-import { useDispatch , useSelector} from 'react-redux'
- import { addToWatchList , removeFromWatchList}  from '../../store/slices/watchList'
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToWatchList,
+  removeFromWatchList,
+} from "../../store/slices/watchList";
 import { getMovieDetails } from "../../apis/getMovieDetail";
-// import { current } from "@reduxjs/toolkit";
 
 const MoviesCard = (props) => {
-
-
   const dispatch = useDispatch();
-  const watchListArr = useSelector(state => state.watchList.watchListArr);
-
-
+  const watchListArr = useSelector((state) => state.watchList.watchListArr);
   const baseImageURL = `https://image.tmdb.org/t/p/w500`;
   let modifiedTitle = String(`${props.movieList.title}`).trim();
-  const [isActive, setIsActive] = useState(false);
-  
+
+  const isMovieInWatchList = (id) => {
+    return watchListArr.some((movieObj) => movieObj.id === id);
+  };
+
+  const [isActive, setIsActive] = useState(isMovieInWatchList(props.movieList.id));
+
   const handleOnClick = async () => {
     try {
       const movieData = await getMovieDetails(props.movieList.id);
-       const movieObj = movieData.data;
-      if (isActive) {
-        // Object is not red, and you need to remove the movie from the watching list
-        
-        dispatch(removeFromWatchList(movieObj))
-        console.log(`Heart now is not red`);
+      const movieObj = movieData.data;
+
+      if (isMovieInWatchList(props.movieList.id)) {
+        // Object is in the watch list, remove it
+        dispatch(removeFromWatchList(movieObj));
+        console.log(`Removed from watch list`);
       } else {
-        // Object is red, and you need to add the movie to the watching list 
-        
+        // Object is not in the watch list, add it
         dispatch(addToWatchList(movieObj));
-        console.log("Updated watchListArr:", [...watchListArr, movieObj]);
+        console.log("Added to watch list");
       }
 
-      // Toggle the isActive state
-      setIsActive(current => !current);
+      // Update the isActive state
+      setIsActive(isMovieInWatchList(props.movieList.id));
 
       // Log the movie ID
       console.log(props.movieList.id);
@@ -45,6 +46,13 @@ const MoviesCard = (props) => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    // Clean up local storage if the component is unmounted
+    return () => {
+      localStorage.removeItem(`movie_${props.movieList.id}`);
+    };
+  }, [props.movieList.id]);
 
 
   return (
@@ -65,7 +73,6 @@ const MoviesCard = (props) => {
               ></div>
             </Link>
           </div>
-
           <div className="text-movie-cont">
             <div className="mr-grid">
               <div className="col1">
@@ -111,9 +118,15 @@ const MoviesCard = (props) => {
                 <i className="material-icons">&#xE161;</i>
               </div>
               <div className="col6 action-btn ">
-                <i className="material-icons " style={{
-                  color:isActive?'red':'',
-                }} onClick={handleOnClick} >&#xe87d;</i>
+                <i
+                  className="material-icons "
+                  style={{
+                    color:  isMovieInWatchList(props.movieList.id) ? "red" : "",
+                  }}
+                  onClick={handleOnClick}
+                >
+                  &#xe87d;
+                </i>
               </div>
               <div className="col6 action-btn">
                 <i className="material-icons">&#xE80D;</i>
