@@ -1,6 +1,6 @@
 import React from "react";
 import { getMovieDetails } from "../../apis/getMovieDetail";
-
+import './MoviesCard.css'
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeFromWatchList,
