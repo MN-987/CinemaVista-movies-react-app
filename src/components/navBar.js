@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useContext } from 'react';
 import './navBar.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { LanguageContext } from '../context/language';
 
 const NavBar = () => {
   const watchListArrLength = useSelector(state => state.watchList.watchListArr.length);
   const [isNavHidden, setIsNavHidden] = useState(false);
   const [search, setSearch] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English
+  const [selectedLanguage, setSelectedLanguage] = useContext(LanguageContext); 
 
   const handleInputChange = (e) => {
     setSearch(e.target.value);
@@ -19,7 +20,6 @@ const NavBar = () => {
 
   const handleLanguageChange = (language) => {
     setSelectedLanguage(language);
-    // You can add logic here to change the language in your app
   };
 
   useEffect(() => {
