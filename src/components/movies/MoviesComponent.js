@@ -2,21 +2,23 @@ import React from 'react';
 
 import MoviesCard from './moviesCard.js'
 import {getMoviesList} from '../../apis/getMoviesList.js'
-import { useState , useEffect } from 'react';
+import { useContext , useState , useEffect } from 'react';
+import { LanguageContext } from '../../context/language.js';
 
 const MoviesComponent = () => {
 
   const [movies, setMovies] = useState([]);
+  const {language}=useContext(LanguageContext);
 
   useEffect(() => {
-    getMoviesList()
+    getMoviesList(language)
       .then((data) => {
         setMovies(data['data'].results);
       })
       .catch((err) => {
         console.log("Error fetching movies list", err);
       });
-  }, []);
+  }, [language]);
 
   // movies.map((movie) => (
   //   console.log('from movies component' , movie.id)
