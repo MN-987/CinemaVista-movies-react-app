@@ -7,12 +7,19 @@ import MoviesDetails from './pages/movies-details.js'
 import MovieSearch from './pages/movies-search.js'
 import MoviesWatchList from './pages/movies-watch-list.js'
 import Register from './pages/Register.js';
+import {LanguageContext} from './context/language.js'
+import { useState } from 'react';
 function App() {
+  const [language,setLanguage]=useState('en');
   return (
     <>
       <BrowserRouter>
+      <LanguageContext.Provider value={{language,setLanguage}}>
       <NavBar />
+    
+
         <Routes>
+
           <Route path="/" element={<MoviesComponent />} />
           <Route path="/movies-details/:id" element={<MoviesDetails  />} />
           <Route path="/movies-search/:search" element={<MovieSearch  />} />
@@ -20,6 +27,7 @@ function App() {
           <Route path='register' element={<Register/>} />
           
         </Routes>
+        </LanguageContext.Provider>
       </BrowserRouter>
     </>
   );

@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './navBar.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import { LanguageContext } from '../context/language';
 const NavBar = () => {
   const watchListArrLength = useSelector(state => state.watchList.watchListArr.length);
   const [isNavHidden, setIsNavHidden] = useState(false);
   const [search, setSearch] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState('en'); // Default language is English
+
+  const {language,setLanguage}=useContext(LanguageContext);
 
   const handleInputChange = (e) => {
     setSearch(e.target.value);
@@ -18,8 +19,8 @@ const NavBar = () => {
   };
 
   const handleLanguageChange = (language) => {
-    setSelectedLanguage(language);
-    // You can add logic here to change the language in your app
+    setLanguage(language);
+    
   };
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <>
+    <div dir={language === 'ar'? 'rtl' :'ltr'}>
       <nav className={`mask ${isNavHidden ? 'is-hidden' : ''}`}>
         <Link to="/">Welcome To CinemaVista</Link>
         <ul className="list">
@@ -46,9 +47,9 @@ const NavBar = () => {
           <li><Link to="#">Contact</Link></li>
           <li>
           <div className="language-dropdown" >
-          <select value={selectedLanguage} onChange={(e) => handleLanguageChange(e.target.value)}>
-            <option value="en">English</option>
-            <option value="ar">Arabic</option>
+          <select value={language} onChange={(e) => handleLanguageChange(e.target.value)}>
+            <option value="en">en</option>
+            <option value="ar">ar</option>
           </select>
         </div>
           </li>
@@ -60,7 +61,7 @@ const NavBar = () => {
         <button className="menu">Menu</button>
         <input type='text' onChange={handleInputChange} />
       </nav>
-    </>
+    </div>
   );
 };
 
